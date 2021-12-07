@@ -231,7 +231,7 @@ const renderTable = (inputState) => {
         }))));
 };
 const renderSavedList = (onClick, onRemove) => {
-    const list = JSON.parse(sessionStorage.getItem("savedList") || "[]");
+    const list = JSON.parse(localStorage.getItem("savedList") || "[]");
     if (list.length == 0)
         return react__WEBPACK_IMPORTED_MODULE_1__.createElement("h3", null, "List is empty!");
     return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(views__WEBPACK_IMPORTED_MODULE_3__.View, null, list.map((l, i) => {
@@ -273,17 +273,17 @@ const XpCalculatorComponent = () => {
     const [collapsed, setCollapsed] = react__WEBPACK_IMPORTED_MODULE_1__.useState(true);
     const handleChange = (key) => (e) => setInputState(Object.assign(Object.assign({}, inputState), { [key]: Number(e.target.value) }));
     const saveVariables = () => {
-        const list = JSON.parse(sessionStorage.getItem("savedList") || "[]");
+        const list = JSON.parse(localStorage.getItem("savedList") || "[]");
         if (!list.find(l => JSON.stringify(l) === JSON.stringify(inputState))) {
             list.push(Object.assign({}, inputState));
-            sessionStorage.setItem("savedList", JSON.stringify(list));
+            localStorage.setItem("savedList", JSON.stringify(list));
             setInputState(Object.assign({}, inputState));
         }
     };
     const onRemove = (index) => {
-        const list = JSON.parse(sessionStorage.getItem("savedList") || "[]");
+        const list = JSON.parse(localStorage.getItem("savedList") || "[]");
         list.splice(index, 1);
-        sessionStorage.setItem("savedList", JSON.stringify(list));
+        localStorage.setItem("savedList", JSON.stringify(list));
         setInputState(Object.assign({}, inputState));
     };
     return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(views__WEBPACK_IMPORTED_MODULE_3__.View, { id: "xp-calculator" },
